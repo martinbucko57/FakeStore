@@ -53,7 +53,7 @@ struct ProductDetailView: View {
                                 Text("Cena:")
                                     .font(.footnote)
                                 
-                                Text("\(product.price)")
+                                Text(product.price, format: .currency(code: "EUR"))
                                     .font(.headline)
                             }
                         }

@@ -22,18 +22,40 @@ struct ProductsView: View {
             )
         )
     ]
+    @State private var categories: [String] = ["jewelery", "electronics"]
+    @State private var selectedCategory: String? = nil
+    @State private var showFilter: Bool = false
     
     var body: some View {
         List(products) { product in
-            ProductRow(product: product)
+            NavigationLink {
+                ProductDetailView(productId: product.id)
+            } label: {
+                ProductRow(product: product)
+            }
         }
         .listStyle(.inset)
-        .navigationTitle("Produkty")
+        .navigationTitle(selectedCategory ?? "Produkty")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Filter") {
-                    //TODO: Filter
+                    showFilter.toggle()
+                }
+            }
+        }
+        .confirmationDialog("Filter", isPresented: $showFilter) {
+            if let selectedCategory {
+                Button("Zrusit filter \(selectedCategory)", role: .destructive) {
+                    self.selectedCategory = nil
+                }
+            }
+            
+            ForEach(categories, id: \.self) { category in
+                if category != selectedCategory {
+                    Button(category) {
+                        selectedCategory = category
+                    }
                 }
             }
         }
