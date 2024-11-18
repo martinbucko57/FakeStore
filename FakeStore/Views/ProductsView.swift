@@ -46,10 +46,7 @@ struct ProductsView: View {
                 }
             }
         }
-        .task { await fetchData() }
-        .onChange(of: selectedCategory) { _ in
-            Task { await fetchData() }
-        }
+        .task(id: selectedCategory) { await fetchData() }
     }
     
     private func fetchData() async {

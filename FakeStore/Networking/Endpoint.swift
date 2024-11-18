@@ -12,7 +12,7 @@ enum Endpoint {
     case productDetail(productId: Int)
     case categories
     
-    private var baseURL: URL { URL(string: "https://fakestoreapi.com")! }
+    private var baseURL: String { return "https://fakestoreapi.com" }
     
     var path: String {
         switch self {
@@ -31,5 +31,5 @@ enum Endpoint {
         }
     }
     
-    var url: URL { baseURL.appendingPathComponent(path) }
+    var url: URL? { URL(string: baseURL + path) }
 }

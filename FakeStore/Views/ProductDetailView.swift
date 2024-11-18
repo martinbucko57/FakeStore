@@ -8,18 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    @State private var product: Product? = Product(
-        id: 1,
-        title: "Test",
-        price: 10.2,
-        description: "Description",
-        category: "jewelery",
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-        rating: Rating(
-            rate: 10,
-            count: 2
-        )
-    )
+    @State private var product: Product?
     let productId: Int
     
     var body: some View {
@@ -67,6 +56,11 @@ struct ProductDetailView: View {
         }
         .navigationTitle(product?.category ?? "")
         .navigationBarTitleDisplayMode(.inline)
+        .task { await fetchProduct() }
+    }
+    
+    private func fetchProduct() async {
+        product = try? await NetworkService.shared.fetchProductDetail(productId: productId)
     }
 }
 

@@ -26,7 +26,11 @@ class NetworkService {
     }
     
     private func sendRequest<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
-        try await AF.request(endpoint.url)
+        guard let url = endpoint.url else {
+            throw AFError.invalidURL(url: endpoint.path)
+        }
+        
+        return try await AF.request(url)
             .validate()
             .serializingDecodable(T.self)
             .value
