@@ -45,21 +45,8 @@ struct ProductRow: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: product.image)) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                case .failure:
-                    Image(systemName: "photo")
-                        .font(.title)
-                        .foregroundStyle(.secondary)
-                default:
-                    ProgressView()
-                }
-            }
-            .frame(width: 50, height: 50)
+            ProductImageView(url: URL(string: product.image))
+                .frame(width: 50, height: 50)
             
             VStack(alignment: .leading) {
                 Text(product.title)
@@ -74,8 +61,37 @@ struct ProductRow: View {
     }
 }
 
+struct ProductImageView: View {
+    let url: URL?
+    
+    var body: some View {
+        AsyncImage(url: url) { phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                    .scaledToFit()
+            case .failure:
+                Image(systemName: "photo")
+                    .font(.title)
+                    .foregroundStyle(.secondary)
+            default:
+                ProgressView()
+            }
+        }
+    }
+}
+
 #Preview {
     NavigationView {
         ProductsView()
     }
+    .preferredColorScheme(.light)
+}
+
+#Preview {
+    NavigationView {
+        ProductsView()
+    }
+    .preferredColorScheme(.dark)
 }
