@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    @State private var product: Product?
-    let productId: Int
+    @StateObject private var viewModel: ProductDetailViewModel
+    
+    init(productId: Int) {
+        self._viewModel = StateObject(wrappedValue: ProductDetailViewModel(productId: productId))
+    }
     
     var body: some View {
         ZStack {
-            if let product {
+            if let product = viewModel.product {
                 ScrollView {
                     ProductImageView(url: URL(string: product.image))
                         .frame(width: 200, height: 200)
@@ -29,7 +32,7 @@ struct ProductDetailView: View {
                         
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("ID produktu:")
+                                Text("product.detail.id".localize())
                                     .font(.footnote)
                                 
                                 Text("\(product.id)")
@@ -39,7 +42,7 @@ struct ProductDetailView: View {
                             Spacer()
                             
                             VStack(alignment: .trailing) {
-                                Text("Cena:")
+                                Text("product.detail.price".localize())
                                     .font(.footnote)
                                 
                                 Text(product.price, format: .currency(code: "EUR"))
@@ -54,13 +57,9 @@ struct ProductDetailView: View {
                     .controlSize(.large)
             }
         }
-        .navigationTitle(product?.category ?? "")
+        .navigationTitle(viewModel.product?.category ?? "")
         .navigationBarTitleDisplayMode(.inline)
-        .task { await fetchProduct() }
-    }
-    
-    private func fetchProduct() async {
-        product = try? await NetworkService.shared.fetchProductDetail(productId: productId)
+        .task { await viewModel.fetchProduct() }
     }
 }
 

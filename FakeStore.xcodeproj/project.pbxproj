@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C01CC3A02CEB60BD00A7385C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C01CC39F2CEB60BD00A7385C /* Alamofire */; };
+		C01CC3F02CEBE2F600A7385C /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C01CC3EF2CEBE2F600A7385C /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C01CC3F02CEBE2F600A7385C /* SDWebImageSwiftUI in Frameworks */,
 				C01CC3A02CEB60BD00A7385C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = FakeStore;
 			packageProductDependencies = (
 				C01CC39F2CEB60BD00A7385C /* Alamofire */,
+				C01CC3EF2CEBE2F600A7385C /* SDWebImageSwiftUI */,
 			);
 			productName = FakeStore;
 			productReference = C034F57A2CEB59BA00804018 /* FakeStore.app */;
@@ -92,16 +95,18 @@
 				};
 			};
 			buildConfigurationList = C034F5752CEB59BA00804018 /* Build configuration list for PBXProject "FakeStore" */;
-			developmentRegion = en;
+			developmentRegion = sk;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				sk,
+				en,
 			);
 			mainGroup = C034F5712CEB59BA00804018;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				C01CC39E2CEB60BD00A7385C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C01CC3EE2CEBE2F600A7385C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C034F57B2CEB59BA00804018 /* Products */;
@@ -139,6 +144,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -193,6 +199,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -202,6 +209,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -249,6 +257,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -345,6 +354,14 @@
 				minimumVersion = 5.10.1;
 			};
 		};
+		C01CC3EE2CEBE2F600A7385C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -352,6 +369,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C01CC39E2CEB60BD00A7385C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C01CC3EF2CEBE2F600A7385C /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C01CC3EE2CEBE2F600A7385C /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

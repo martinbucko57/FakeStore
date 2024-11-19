@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class NetworkService {
+actor NetworkService {
     
     static let shared = NetworkService()
     private init() {}
